@@ -38,11 +38,8 @@ INSTALLED_APPS = [
     'django_extensions',
 
     # Project-specific
-<<<<<<< HEAD
-    'core'
-=======
     'core',
->>>>>>> parent of 9f3e251 (initial file set-up)
+    'lucidity',
 ]
 
 MIDDLEWARE = [

@@ -1,10 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from django.db.models.deletion import CASCADE
 from django.db.models.fields import TimeField
 
-class User(AbstractBaseUser):
-    username = models.CharField(max_length=30)
+class User(AbstractUser):
     display_name: models.CharField(max_length=200)
     legal_name: models.CharField(max_length=200)
     pronouns: models.CharField(max_length=200)

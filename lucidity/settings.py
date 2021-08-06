@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # Project-specific
-    'core',
-    'lucidity'
+    'core'
 ]
 
 MIDDLEWARE = [
@@ -72,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'lucidity.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases

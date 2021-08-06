@@ -36,10 +36,13 @@ INSTALLED_APPS = [
     # Third-party
     'debug_toolbar',
     'django_extensions',
-    'rest_framework',
 
     # Project-specific
+<<<<<<< HEAD
     'core'
+=======
+    'core',
+>>>>>>> parent of 9f3e251 (initial file set-up)
 ]
 
 MIDDLEWARE = [
@@ -71,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
+WSGI_APPLICATION = 'lucidity.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -122,10 +125,6 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'core.User'
 
 # Debug toolbar config
-import django_on_heroku
-django_on_heroku.settings(locals())
-del DATABASES['default']['OPTIONS']['sslmode']
-
 
 INTERNAL_IPS = [
     # ...

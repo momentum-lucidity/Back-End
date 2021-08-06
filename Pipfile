@@ -11,10 +11,13 @@ django-extensions = "*"
 django-debug-toolbar = "*"
 werkzeug = "*"
 django-environ = "*"
+<<<<<<< HEAD
 psycopg2-binary = "*"
 django-on-heroku = "*"
 gunicorn = "*"
 djangorestframework = "*"
+=======
+>>>>>>> parent of 9f3e251 (initial file set-up)
 
 [requires]
 python_version = "3.9"

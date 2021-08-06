@@ -4,6 +4,7 @@ from django.db.models.deletion import CASCADE
 from django.db.models.fields import TimeField
 
 class User(AbstractBaseUser):
+    username = models.CharField(max_length=30)
     display_name: models.CharField(max_length=200)
     legal_name: models.CharField(max_length=200)
     pronouns: models.CharField(max_length=200)

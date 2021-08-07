@@ -37,7 +37,7 @@ class Document(models.Model):
     required = models.BooleanField(null=True, blank=True, default=None)
 
 class Alert(models.Model):
-    user = models.ForeignKey(User, related_name="creator")
+    user = models.ForeignKey(User, related_name="creator", on_delete=CASCADE)
     title = models.CharField(max_length=200)
     date = models.DateTimeField(auto_now_add=True)
     text = models.TextField()

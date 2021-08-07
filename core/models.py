@@ -21,14 +21,14 @@ class User(AbstractUser):
 
 
 class Event(models.Model):
-    user = models.ManyToManyField(User, on_delete=CASCADE,  related_name="volunteer")
-    title = models.CharField(max=250)
+    user = models.ManyToManyField(User, related_name="volunteer")
+    title = models.CharField(max_length=250)
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
     type = models.CharField(max_length=250)
     description = models.TextField()
-    
+
 
 
     

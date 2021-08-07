@@ -21,7 +21,9 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = [".herokuapp.com"]
+ALLOWED_HOSTS = [".herokuapp.com",
+                "127.0.0.1"
+]
 
 # Application definition
 
@@ -129,3 +131,9 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import django_on_heroku
+django_on_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']

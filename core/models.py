@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.deletion import CASCADE
-from django.db.models.fields import TimeField
+from django.db.models.fields import DateTimeField, TimeField
 
 class User(AbstractUser):
     display_name: models.CharField(max_length=200)
@@ -35,6 +35,16 @@ class Document(models.Model):
     body = models.TextField(null=True, blank=True)
     url = models.URLField(max_length=200, null=True, blank=True)
     required = models.BooleanField(null=True, blank=True, default=None)
+
+class Alert(models.Model):
+    user = models.ForeignKey(User, related_name="creator")
+    title = models.CharField(max_length=200)
+    date = models.DateTimeField(auto_now_add=True)
+    text = models.TextField()
+
+class Note(models.Model):
+    user = models.ManyToManyField(User, related_name="note_creator")
+    text = models.TextField(null=True, blank=True)
 
 
 

@@ -19,7 +19,6 @@ class User(AbstractUser):
     intake_status: models.CharField(max_length=50)
     preferred_event: models.TextField(max_length=500)
 
-
 class Event(models.Model):
     user = models.ManyToManyField(User, related_name="volunteer")
     title = models.CharField(max_length=250)
@@ -28,6 +27,18 @@ class Event(models.Model):
     end_time = models.TimeField()
     type = models.CharField(max_length=250)
     description = models.TextField()
+
+class Document(models.Model):
+    user = models.ManyToManyField(User, related_name="volunteer_form")
+    title = models.CharField(max_length=250)
+    description = models.TextField(null=True, blank=True)
+    text_body = models.TextField(null=True, blank=True)
+    url = models.URLField(max_length=200, null=True, blank=True)
+    required = models.NullBooleanField()
+
+
+
+
 
 
 

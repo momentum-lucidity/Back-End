@@ -6,10 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "*"
+Django = "*"
 django-extensions = "*"
-django-debug-toolbar = "*"
-werkzeug = "*"
 django-environ = "*"
 psycopg2-binary = "*"
 django-on-heroku = "*"

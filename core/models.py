@@ -31,10 +31,10 @@ class Event(models.Model):
 class Document(models.Model):
     user = models.ManyToManyField(User, related_name="volunteer_form")
     title = models.CharField(max_length=250)
-    description = models.TextField(null=True, blank=True)
-    text_body = models.TextField(null=True, blank=True)
+    summary = models.TextField(null=True, blank=True)
+    body = models.TextField(null=True, blank=True)
     url = models.URLField(max_length=200, null=True, blank=True)
-    required = models.NullBooleanField()
+    required = models.BooleanField(null=True, blank=True, default=None)
 
 
 

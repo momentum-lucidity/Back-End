@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models.deletion import CASCADE
+from django.db.models.deletion import CASCADE, DO_NOTHING
 from django.db.models.fields import DateTimeField, TimeField
 
 class User(AbstractUser):
@@ -45,6 +45,15 @@ class Alert(models.Model):
 class Note(models.Model):
     user = models.ManyToManyField(User, related_name="note_creator")
     text = models.TextField(null=True, blank=True)
+
+class VolunteerSlot(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE, related_name="slot_chooser")
+    text_slot = models.TextField()
+    event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_slots")
+    time = models.DateTimeField(null=True, blank=True)
+
+
+
 
 
 

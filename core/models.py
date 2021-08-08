@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.deletion import CASCADE, DO_NOTHING
-from django.db.models.fields import DateTimeField, TimeField
+from django.db.models.fields import BooleanField, DateTimeField, TimeField
 
 class User(AbstractUser):
     display_name: models.CharField(max_length=200)
@@ -51,6 +51,19 @@ class VolunteerSlot(models.Model):
     text_slot = models.TextField()
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_slots")
     time = models.DateTimeField(null=True, blank=True)
+
+class StatusBar(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE, related_name="intake_status")
+    unfinished = BooleanField(default=False)
+    pending = BooleanField(default=False)
+    approved = BooleanField(default=False)
+    complete = BooleanField(default=False)
+
+class Tag(models.Model):
+    user = models.ManyToManyField(User, related_name="tag")
+    text = models.CharField(max_length=100)
+    event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_tagged")
+    
 
 
 

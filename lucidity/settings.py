@@ -25,7 +25,10 @@ DEBUG = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.AllowAny'],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
     ]
 }
 
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     # Third-party
     'django_extensions',
     'rest_framework',
+    'rest_framework.authtoken',
 
     # Project-specific
     'core',

@@ -40,17 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-party
-    'debug_toolbar',
     'django_extensions',
     'rest_framework',
 
     # Project-specific
     'core',
-    'lucidity',
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -77,6 +74,9 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = "core.User"
+
 
 WSGI_APPLICATION = 'lucidity.wsgi.application'
 
@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 
@@ -119,14 +119,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 STATIC_URL = '/static/'
 
 # Custom user model
-
-AUTH_USER_MODEL = "core.User"
-
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import django_on_heroku
 django_on_heroku.settings(locals())

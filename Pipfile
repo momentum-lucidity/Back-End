@@ -13,6 +13,8 @@ psycopg2-binary = "*"
 django-on-heroku = "*"
 gunicorn = "*"
 djangorestframework = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
 
 [requires]
 python_version = "3.9"

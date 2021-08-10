@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include ('rest_framework.urls')),
     path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
     path('volunteers/', views.user_list),
     path('volunteers/<int:pk>/', views.user_profile),
 ]

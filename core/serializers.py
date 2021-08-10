@@ -1,5 +1,4 @@
 
-from typing_extensions import Required
 from rest_framework import serializers
 from .models import User, Event, Document, Alert, Note, VolunteerSlot, StatusBar, Tag
 
@@ -11,7 +10,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['display_name','legal_name','pronouns', 'availability', 'email', 'telephone', 
         'address1', 'address2', 'city','state','zipcode', 'user_status',
         'intake_status','preferred_event']
-    
 
 class EventSerializer(serializers.ModelSerializer):
 
@@ -26,8 +24,6 @@ class UrlSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url']
 
 class DocumentSerializer(serializers.ModelSerializer):
-    url = serializers.UrlField(source='UrlSerializer.url')
-    
     class Meta:
         model = Document
         fields = ['user', 'title', 'summary', 'body', 'url', 'required']

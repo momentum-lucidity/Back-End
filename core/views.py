@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from .models import User
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from rest_framework import status,authentication, permissions, generics
@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from .serializers import UserSerializer
 
 
-@api_view('GET')
+
 def user_list(request):
 
     if request.method == 'GET':
@@ -18,12 +18,10 @@ def user_list(request):
 
     elif request.method == 'POST':
         serializer = UserSerializer(data=request.data)
+        serializer.is_valid()
+        serializer.save(user=request.user)
+        return Response(serializer.data)
 
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-
-
-@api_view('GET')
 def user_profile(request):
 
     if request.method == 'GET':
@@ -34,6 +32,7 @@ def user_profile(request):
     elif request.method == 'POST':
         serializer = UserSerializer(data=request.data)
 
-        if serializer.is_valid():
-            serializer.save(user=request.user)
+        serializer.is_valid()
+        serializer.save(user=request.user)
+        return Response(serializer.data)
 

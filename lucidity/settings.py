@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'corsheaders'
 
     # Project-specific
     'core',
@@ -60,6 +61,9 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -84,6 +88,8 @@ TEMPLATES = [
 ]
 
 AUTH_USER_MODEL = "core.User"
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 WSGI_APPLICATION = 'lucidity.wsgi.application'

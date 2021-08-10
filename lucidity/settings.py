@@ -89,6 +89,10 @@ TEMPLATES = [
 
 AUTH_USER_MODEL = "core.User"
 
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'content-disposition',
+]
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 

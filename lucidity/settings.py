@@ -1,11 +1,10 @@
-import os
 from pathlib import Path
 import environ
+import os
 from corsheaders.defaults import default_headers
 
-
-
-
+# Build paths inside the project like this: BASE_DIR / ...
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
     # set casting, default value
@@ -15,14 +14,15 @@ environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# Build paths inside the project like this: BASE_DIR / ...
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
+
+ALLOWED_HOSTS = [".herokuapp.com"]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -33,8 +33,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-ALLOWED_HOSTS = []
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,21 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-
-    # Third-party
     'django_extensions',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
-
-    # Project-specific
     'core',
 ]
 
 MIDDLEWARE = [
-        'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -101,7 +94,10 @@ WSGI_APPLICATION = 'lucidity.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {'default': env.db()}
+DATABASES = {
+    'default': 
+        env.db()
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

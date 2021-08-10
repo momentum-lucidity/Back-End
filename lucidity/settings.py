@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework',
     'djoser',
-    'corsheaders'
+    'corsheaders',
 
     # Project-specific
     'core',

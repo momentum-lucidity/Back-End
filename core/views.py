@@ -45,7 +45,7 @@ def registration(request):
 
     
     elif request.method == 'POST':
-        fields = ('legal_name','address1', 'address2', 'email','telephone', 'city', 'state', 'zipcode')
+        fields = ('legal_name', 'address2', 'email','telephone', 'city', 'state', 'zipcode')
         user = User.object.filter(fields)
         serializer = UserSerializer(user)
         

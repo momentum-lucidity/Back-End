@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['display_name','legal_name','pronouns', 'availability', 'email', 'telephone', 
-        'address1', 'address2', 'city','state','zipcode', 'user_status',
+        'address2', 'city','state','zipcode', 'user_status',
         'intake_status','preferred_event']
 
 class EventSerializer(serializers.ModelSerializer):

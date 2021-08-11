@@ -9,4 +9,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('volunteers/', views.user_list),
     path('volunteers/<int:pk>/', views.user_profile),
+    path('user/create/', views.registration),
+    path('event/', views.event),
+    path('event/<int:pk>/', views.event)
 ]

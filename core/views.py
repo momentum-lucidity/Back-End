@@ -1,11 +1,11 @@
-from .models import Event, User
+from .models import Event, Note, User
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from rest_framework import status,authentication, permissions, generics
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
-from .serializers import EventSerializer, UserSerializer
+from .serializers import EventSerializer, NoteSerializer, UserSerializer
 from core import serializers
 
 
@@ -86,3 +86,36 @@ def eventDelete(request):
         event = Event.objects.get(pk=id)
         event.delete()
         return Response('Event has been deleted')
+
+
+def noteList(request):
+    if request.method == 'GET':
+        note = Note.objects.all()
+        serializers = NoteSerializer(note, many=True)
+        return Response (serializers.data)
+
+    elif request.method == 'POST':
+        serializer = NoteSerializer(data=request.data)
+        serializer.is_valid()
+        serializer.save()
+        return Response(serializer.data)
+
+def noteDetail(request):
+    if request.method == 'GET':
+        note = Note.objects.get(pk=id)
+        serializer = NoteSerializer(note, many=False)
+        return Response(serializer.data)
+
+def noteEdit(request):
+    if request.method == 'GET':
+        note = Note.objects.get(pk=id)
+        serializer = NoteSerializer(note, data=request.data)
+        serializer.is_valid()
+        serializer.save()
+        return Response(serializer.data)
+
+def noteDelete(request):
+    if request.method == 'DELETE':
+        note = Note.objects.get(pk=id)
+        note.delete()
+        return Response('This note has been deleted')

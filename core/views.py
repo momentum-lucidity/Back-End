@@ -60,7 +60,7 @@ def profile_delete(request, pk):
 @api_view(['GET', 'POST'])
 def registration(request, *args, **kwargs):
     if request.method == 'GET':
-        user = User.objects.get(id=pk)
+        user = User.objects.get(pk=id)
         serializer = UserSerializer(user, many=False)
         return Response(serializer.data)
 

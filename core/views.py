@@ -64,13 +64,10 @@ def registration(request, pk):
         serializer = UserSerializer(user, many=False)
         return Response(serializer.data)
 
-    
     elif request.method == 'POST':
-        newuser = User.objects.create_user()
-        user = newuser.objects.get(id=pk)
-        serializer = UserSerializer(data=request.data)
+        serializer = UserSerializer(user=request.user)
         serializer.is_valid()
-        serializer.save(user=request.user)
+        serializer.save()
         return Response(serializer.data)
 
 

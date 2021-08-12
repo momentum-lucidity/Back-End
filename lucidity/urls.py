@@ -9,7 +9,10 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('volunteers/', views.user_list),
     path('volunteers/<int:pk>/', views.user_profile),
-    path('user/create/', views.registration),
+    path('volunteers/<int:pk>/edit', views.profile_edit),
+    path('volunteers/<int:pk>/delete', views.profile_delete),
+    path('profile/create/', views.registration),
+    path('profile/<int:pk>', views.registration),
     path('events/', views.event),
     path('events/<int:pk>/', views.eventDetail),
     path('events/<int:pk>/edit/', views.eventEdit),
@@ -18,4 +21,5 @@ urlpatterns = [
     path('notes/<int:pk>/', views.noteDetail),
     path('notes/<int:pk>/edit/', views.noteEdit),
     path('notes/<int:pk>/delete/', views.noteDelete),
+
 ]

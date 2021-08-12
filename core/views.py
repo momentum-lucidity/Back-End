@@ -66,13 +66,12 @@ def registration(request, pk):
 
     
     elif request.method == 'POST':
-        model = User
         newuser = User.objects.create_user()
-        user = User.objects.get(newuser)
+        user = newuser.objects.get(id=pk)
         serializer = UserSerializer(data=request.data)
         serializer.is_valid()
         serializer.save(user=request.user)
-        return Response(user, serializer.data)
+        return Response(serializer.data)
 
 
 @api_view(['GET', 'POST'])

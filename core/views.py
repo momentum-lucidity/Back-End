@@ -65,7 +65,7 @@ def registration(request, pk):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = UserSerializer(user=request.user)
+        serializer = UserSerializer(data=request.data)
         serializer.is_valid()
         serializer.save()
         return Response(serializer.data)

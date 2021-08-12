@@ -69,7 +69,7 @@ def registration(request, pk):
         
         serializer = UserSerializer(data=request.data)
         serializer.is_valid()
-        serializer.save(user=request.user)
+        serializer.save(user=request.user, id=pk)
         return Response(serializer.data)
 
 

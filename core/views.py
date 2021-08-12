@@ -57,14 +57,16 @@ def profile_delete(request, pk):
         return Response('This profile has been deleted')
 
 
-@api_view(['GET', 'POST'])
-def registration(request, *args, **kwargs):
+@api_view(['GET'])
+def registration(request, pk):
     if request.method == 'GET':
-        user = User.objects.get(pk=id)
+        user = User.objects.get(id=pk)
         serializer = UserSerializer(user, many=False)
         return Response(serializer.data)
 
-    elif request.method == 'POST':
+@api_view(['GET'])
+def newregistration(request):
+    if request.method == 'POST':
         serializer = UserSerializer(data=request.data)
         serializer.is_valid()
         serializer.save()

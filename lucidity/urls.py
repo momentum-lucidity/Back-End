@@ -11,6 +11,7 @@ urlpatterns = [
     path('volunteers/<int:pk>/', views.user_profile),
     path('volunteers/<int:pk>/edit', views.profile_edit),
     path('volunteers/<int:pk>/delete', views.profile_delete),
+    path('profile/<int:pk>/', views.registration),
     path('profile/', views.registration),
     path('events/', views.event),
     path('events/<int:pk>/', views.eventDetail),

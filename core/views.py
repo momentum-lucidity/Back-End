@@ -254,9 +254,6 @@ def tagDelete(request, pk):
         tag.delete()
         return Response('Tag deleted')
 
-@api_view(['GET', 'POST'])
-def 
-
 
 
 

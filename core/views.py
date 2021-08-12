@@ -64,7 +64,7 @@ def registration(request, pk):
         serializer = UserSerializer(user, many=False)
         return Response(serializer.data)
 
-@api_view(['GET'])
+@api_view(['POST'])
 def newregistration(request):
     if request.method == 'POST':
         serializer = UserSerializer(data=request.data)

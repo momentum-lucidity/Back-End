@@ -24,10 +24,10 @@ def user_list(request):
         return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
-def user_profile(request, id):
+def user_profile(request, pk):
 
     if request.method == 'GET':
-        user = User.objects.get(pk=id)
+        user = User.objects.get(id=pk)
         serializer = UserSerializer(user, many=False)
         return Response(serializer.data)
 
@@ -39,9 +39,9 @@ def user_profile(request, id):
         return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
-def registration(request, id):
+def registration(request, pk):
     if request.method == 'GET':
-        user = User.objects.get(pk=id)
+        user = User.objects.get(id=pk)
         serializer = UserSerializer(user, many=False)
         return Response(serializer.data)
 
@@ -70,25 +70,25 @@ def event(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
-def eventDetail(request, id):
+def eventDetail(request, pk):
     if request.method == 'GET':
-        event = Event.objects.get(pk=id)
+        event = Event.objects.get(id=pk)
         serializer = EventSerializer(event, many=False)
         return Response(serializer.data)
 
 @api_view(['PUT'])
-def eventEdit(request, id):
+def eventEdit(request, pk):
     if request.method == 'PUT':
-        event = Event.objects.get(pk=id)
+        event = Event.objects.get(id=pk)
         serializer = EventSerializer(instance=event, data=request.data)
         serializer.is_valid()
         serializer.save()
         return Response(serializer.data)
 
 @api_view(['DELETE'])
-def eventDelete(request, id):
+def eventDelete(request, pk):
     if request.method == 'DELETE':
-        event = Event.objects.get(pk=id)
+        event = Event.objects.get(id=pk)
         event.delete()
         return Response('Event has been deleted')
 
@@ -107,24 +107,24 @@ def noteList(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
-def noteDetail(request, id):
+def noteDetail(request, pk):
     if request.method == 'GET':
-        note = Note.objects.get(pk=id)
+        note = Note.objects.get(id=pk)
         serializer = NoteSerializer(note, many=False)
         return Response(serializer.data)
 
 @api_view(['GET'])
-def noteEdit(request, id):
+def noteEdit(request, pk):
     if request.method == 'GET':
-        note = Note.objects.get(pk=id)
+        note = Note.objects.get(id=pk)
         serializer = NoteSerializer(note, data=request.data)
         serializer.is_valid()
         serializer.save()
         return Response(serializer.data)
 
 @api_view(['DELETE'])
-def noteDelete(request, id):
+def noteDelete(request, pk):
     if request.method == 'DELETE':
-        note = Note.objects.get(pk=id)
+        note = Note.objects.get(id=pk)
         note.delete()
         return Response('This note has been deleted')

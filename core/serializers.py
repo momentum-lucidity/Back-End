@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['username', 'password', 'id', 'display_name','legal_name','pronouns', 'availability', 'email', 'telephone', 
         'address2', 'city','state','zipcode', 'user_status',
         'intake_status','preferred_event']
-        read_only_field=['id']
+        read_only_field=['id', 'intake_status']
 
 class EventSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(

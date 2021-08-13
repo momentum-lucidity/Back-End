@@ -20,11 +20,11 @@ def user_list(request):
     elif request.method == 'POST':
         serializer = UserSerializer(data=request.data)
         serializer.is_valid()
-        serializer.save(user=request.user)
+        serializer.save()
         return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
-def user_profile(request, pk):
+def user_profile(request, pk, self, serializer):
 
     if request.method == 'GET':
         user = User.objects.get(id=pk)
@@ -35,7 +35,7 @@ def user_profile(request, pk):
         serializer = UserSerializer(data=request.data)
 
         serializer.is_valid()
-        serializer.save(user=request.user)
+        serializer.save()
         return Response(serializer.data)
 
 @api_view(['PUT'])
@@ -65,7 +65,7 @@ def registration(request, pk):
         return Response(serializer.data)
 
 @api_view(['POST'])
-def newregistration(request):
+def newregistration(request, self, serializer):
     if request.method == 'POST':
         serializer = UserSerializer(data=request.data)
         serializer.is_valid()

@@ -2,11 +2,31 @@ from .models import Alert, Document, Event, Note, Tag, User
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from rest_framework import status,authentication, permissions, generics
+from rest_framework import mixins
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from .serializers import AlertSerializer, DocumentSerializer, EventSerializer, NoteSerializer, TagSerializer, UserSerializer
 from core import serializers
+
+class UserList(mixins.ListModelMixin,
+                  mixins.CreateModelMixin,
+                  generics.GenericAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+
+
+
+
+
 
 
 @api_view(['GET', 'POST'])

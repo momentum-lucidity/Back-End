@@ -89,9 +89,6 @@ TEMPLATES = [
 
 AUTH_USER_MODEL = "core.User"
 
-DJOSER = {
-    'SERIALIZERS': {'user': 'core.serializers.UserSerializer',},
-}
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'content-disposition',
@@ -124,6 +121,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user': 'core.serializers.UserSerializer',
+        'user_create': 'core.serializers.UserSerializer',
+        'current_user': 'core.serializers.UserSerializer',
+        },
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

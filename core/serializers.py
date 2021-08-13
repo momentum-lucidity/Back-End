@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['username', 'password', 'id', 'display_name','legal_name','pronouns', 'availability', 'email', 'telephone', 
         'address2', 'city','state','zipcode', 'user_status',
         'intake_status','preferred_event']
-        read_only_field=['id', 'intake_status']
+        read_only_field=['id']
 
 class EventSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
@@ -53,8 +53,8 @@ class NoteSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Note
-        fields = ['owner','text']
-        read_only_fields=['owner']
+        fields = ['note_id', 'owner', 'text']
+        read_only_fields=['note_id', 'owner']
 
 
 class VolunteerSlotSerializer(serializers.ModelSerializer):
@@ -74,8 +74,8 @@ class StatusBarSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = StatusBar
-        fields = ['owner', 'unfinished', 'pending', 'approved', 'complete']
-        read_only_fields=['owner']
+        fields = ['owner', 'unfinished', 'pending', 'approved', 'complete', 'required']
+        read_only_fields=['owner', 'required']
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -84,5 +84,5 @@ class TagSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Tag
-        fields = ['owner', 'text', 'event']
+        fields = ['owner', 'text']
         read_only_fields=['owner']

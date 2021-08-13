@@ -90,7 +90,7 @@ TEMPLATES = [
 AUTH_USER_MODEL = "core.User"
 
 DJOSER = {
-    'SERIALIZERS': {'user': 'core.serializers.SpecialUserSerializer',},
+    'SERIALIZERS': {'user': 'core.serializers.UserSerializer',},
 }
 
 CORS_ALLOW_HEADERS = list(default_headers) + [

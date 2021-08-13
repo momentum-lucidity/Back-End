@@ -24,7 +24,7 @@ def user_list(request):
         return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
-def user_profile(request, pk, self, serializer):
+def user_profile(request, pk):
 
     if request.method == 'GET':
         user = User.objects.get(id=pk)
@@ -65,7 +65,7 @@ def registration(request, pk):
         return Response(serializer.data)
 
 @api_view(['POST'])
-def newregistration(request, self, serializer):
+def newregistration(request):
     if request.method == 'POST':
         serializer = UserSerializer(data=request.data)
         serializer.is_valid()

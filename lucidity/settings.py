@@ -27,6 +27,7 @@ DEBUG = True
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
+        'rest_framework.authentication.SessionAuthentication',
     ),
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny"
@@ -87,6 +88,10 @@ TEMPLATES = [
 ]
 
 AUTH_USER_MODEL = "core.User"
+
+DJOSER = {
+    "USER_ID_FIELD": "username"
+}
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'content-disposition',

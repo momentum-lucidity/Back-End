@@ -10,6 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['username', 'password', 'id', 'display_name','legal_name','pronouns', 'availability', 'email', 'telephone', 
         'address2', 'city','state','zipcode', 'user_status',
         'intake_status','preferred_event']
+        read_only_field=['id']
 
 class EventSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
@@ -17,7 +18,8 @@ class EventSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Event
-        fields = ['user', 'title', 'date', 'start_time', 'end_time', 'type', 'description']
+        fields = ['owner', 'title', 'date', 'start_time', 'end_time', 'type', 'description']
+        read_only_fields=['owner']
 
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
     

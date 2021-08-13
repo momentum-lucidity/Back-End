@@ -33,7 +33,8 @@ class DocumentSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Document
-        fields = ['user', 'title', 'summary', 'body', 'url', 'required']
+        fields = ['owner', 'title', 'summary', 'body', 'url', 'required']
+        read_only_fields=['owner']
 
 
 class AlertSerializer(serializers.ModelSerializer):
@@ -42,7 +43,8 @@ class AlertSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Alert
-        fields = ['user', 'title', 'date','text']
+        fields = ['owner', 'title', 'date','text']
+        read_only_fields=['owner']
 
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -51,7 +53,8 @@ class NoteSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Note
-        fields = ['user','text']
+        fields = ['owner','text']
+        read_only_fields=['owner']
 
 
 class VolunteerSlotSerializer(serializers.ModelSerializer):
@@ -60,7 +63,8 @@ class VolunteerSlotSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = VolunteerSlot
-        fields = ['user', 'text_slot', 'event', 'time']
+        fields = ['owner', 'text_slot', 'event', 'time']
+        read_only_fields=['owner']
 
 
 class StatusBarSerializer(serializers.ModelSerializer):
@@ -70,13 +74,15 @@ class StatusBarSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = StatusBar
-        fields = ['user', 'unfinished', 'pending', 'approved', 'complete']
+        fields = ['owner', 'unfinished', 'pending', 'approved', 'complete']
+        read_only_fields=['owner']
 
 
 class TagSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
-    default=serializers.CurrentUserDefault()
+        default=serializers.CurrentUserDefault()
 )
     class Meta:
         model = Tag
-        fields = ['user', 'text', 'event']
+        fields = ['owner', 'text', 'event']
+        read_only_fields=['owner']

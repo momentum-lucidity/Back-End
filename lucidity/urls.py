@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
-from core import views
-from apps.accounts.urls import accounts_urlpatterns
+from core import view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,3 @@ urlpatterns = [
     path('tags/<int:pk>/', views.TagDetail.as_view()),
 ]
 
-urlpatterns += accounts_urlpatterns

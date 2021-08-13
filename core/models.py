@@ -1,4 +1,3 @@
-from typing_extensions import TypeVarTuple
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.deletion import CASCADE, DO_NOTHING
@@ -63,16 +62,4 @@ class StatusBar(models.Model):
 class Tag(models.Model):
     user = models.ManyToManyField(User, related_name="tag")
     text = models.CharField(max_length=100, primary_key=True)
-    event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_tagged")
-    
-
-
-
-
-
-
-
-
-
-
-    
+    event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_tagged")  

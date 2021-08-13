@@ -43,7 +43,7 @@ class Alert(models.Model):
 
 class Note(models.Model):
     user = models.ManyToManyField(User, related_name="note_creator")
-    note_id = models.CharField(max_length=200, null=False, blank=False, primary_key=True)
+    note_id = models.CharField(max_length=200, null=False, blank=False, primary_key=True, default="don't render this field, it's just for the id number")
     text = models.TextField(null=True, blank=True)
 
 class VolunteerSlot(models.Model):

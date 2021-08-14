@@ -25,11 +25,10 @@ class EventSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    title = serializers.PrimaryKeyRelatedField(queryset=Event.objects.all())
     class Meta:
         model = Event
-        fields = ['owner', 'title', 'date', 'start_time', 'end_time', 'type', 'description']
-        read_only_fields=['owner']
+        fields = ['owner', 'title', 'event_header', 'date', 'start_time', 'end_time', 'type', 'description']
+        read_only_fields=['owner', 'title']
 
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
     
@@ -41,29 +40,26 @@ class DocumentSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    title = serializers.PrimaryKeyRelatedField(queryset=Document.objects.all())
     class Meta:
         model = Document
-        fields = ['owner', 'title', 'summary', 'body', 'url', 'required']
-        read_only_fields=['owner']
+        fields = ['owner', 'doc_header', 'title', 'summary', 'body', 'url', 'required']
+        read_only_fields=['owner', 'title']
 
 
 class AlertSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    title = serializers.PrimaryKeyRelatedField(queryset=Alert.objects.all())
     class Meta:
         model = Alert
-        fields = ['owner', 'title', 'date','text']
-        read_only_fields=['owner']
+        fields = ['owner', 'title', 'alert_header', 'date','text']
+        read_only_fields=['owner', 'title']
 
 
 class NoteSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    note_id = serializers.PrimaryKeyRelatedField(queryset=Note.objects.all())
     class Meta:
         model = Note
         fields = ['note_id', 'owner', 'text']
@@ -74,11 +70,10 @@ class VolunteerSlotSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    text_slot = serializers.PrimaryKeyRelatedField(queryset=VolunteerSlot.objects.all())
     class Meta:
         model = VolunteerSlot
-        fields = ['owner', 'text_slot', 'event', 'time']
-        read_only_fields=['owner']
+        fields = ['owner', 'vsslot_text', 'text_slot', 'event', 'time']
+        read_only_fields=['owner', 'text_slot']
 
 
 class StatusBarSerializer(serializers.ModelSerializer):
@@ -86,19 +81,17 @@ class StatusBarSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    unfinished = serializers.PrimaryKeyRelatedField(queryset=StatusBar.objects.all())
     class Meta:
         model = StatusBar
-        fields = ['owner', 'unfinished', 'pending', 'approved', 'complete', 'required']
-        read_only_fields=['owner', 'required']
+        fields = ['owner', 'unfinished', 'incomplete', 'pending', 'approved', 'complete', 'required']
+        read_only_fields=['owner', 'unfinished', 'required']
 
 
 class TagSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
 )
-    text = serializers.PrimaryKeyRelatedField(queryset=Tag.objects.all())
     class Meta:
         model = Tag
-        fields = ['owner', 'text']
-        read_only_fields=['owner']
+        fields = ['owner', 'text', 'tag_text']
+        read_only_fields=['owner', 'text']

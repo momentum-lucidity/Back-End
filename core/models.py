@@ -20,6 +20,7 @@ class User(AbstractUser):
 
 class Event(models.Model):
     title = models.CharField(max_length=250, primary_key=True)
+    event_header = models.CharField(max_length=250)
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
@@ -28,6 +29,7 @@ class Event(models.Model):
 
 class Document(models.Model):
     title = models.CharField(max_length=250, primary_key=True)
+    doc_header = models.CharField(max_length=250)
     summary = models.TextField(null=True, blank=True)
     body = models.TextField(null=True, blank=True)
     url = models.URLField(max_length=200, null=True, blank=True)
@@ -35,6 +37,7 @@ class Document(models.Model):
 
 class Alert(models.Model):
     title = models.CharField(max_length=200, primary_key=True)
+    alert_header = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
 
@@ -44,15 +47,18 @@ class Note(models.Model):
 
 class VolunteerSlot(models.Model):
     text_slot = models.TextField(primary_key=True)
+    vslot_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_slots")
     time = models.DateTimeField(null=True, blank=True)
 
 class StatusBar(models.Model):
     unfinished = BooleanField(default=False, primary_key=True)
+    incomplete = BooleanField(default=False)
     pending = BooleanField(default=False)
     approved = BooleanField(default=False)
     complete = BooleanField(default=False)
 
 class Tag(models.Model):
     text = models.CharField(max_length=100, primary_key=True)
+    tag_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_tagged")  

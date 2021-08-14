@@ -6,12 +6,16 @@ from rest_framework import mixins
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
+from rest_framework.filters import SearchFilter, OrderingFilter
 from .serializers import AlertSerializer, DocumentSerializer, EventSerializer, NoteSerializer, StatusBarSerializer, TagSerializer, UserSerializer, VolunteerSlotSerializer
 from core import serializers
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    filter_backends = (SearchFilter, OrderingFilter)
+    search_fields = ('display_name', 'email', 'availability')
+
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
@@ -20,6 +24,8 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 class EventList(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    filter_backends = (SearchFilter, OrderingFilter)
+    search_fields = ('title', 'type', 'description')
 
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
@@ -68,6 +74,8 @@ class StatusDetail(generics.RetrieveUpdateDestroyAPIView):
 class TagList(generics.ListCreateAPIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+    filter_backends = (SearchFilter, OrderingFilter)
+    search_fields = ('text')
 
 class TagDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Tag.objects.all()

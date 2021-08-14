@@ -25,7 +25,7 @@ class EventSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    title = serializers.PrimaryKeyRelatedField()
+    title = serializers.PrimaryKeyRelatedField(queryset=Event.objects.all())
     class Meta:
         model = Event
         fields = ['owner', 'title', 'date', 'start_time', 'end_time', 'type', 'description']
@@ -41,7 +41,7 @@ class DocumentSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    title = serializers.PrimaryKeyRelatedField()
+    title = serializers.PrimaryKeyRelatedField(queryset=Document.objects.all())
     class Meta:
         model = Document
         fields = ['owner', 'title', 'summary', 'body', 'url', 'required']
@@ -52,7 +52,7 @@ class AlertSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    title = serializers.PrimaryKeyRelatedField()
+    title = serializers.PrimaryKeyRelatedField(queryset=Alert.objects.all())
     class Meta:
         model = Alert
         fields = ['owner', 'title', 'date','text']
@@ -63,7 +63,7 @@ class NoteSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    note_id = serializers.PrimaryKeyRelatedField()
+    note_id = serializers.PrimaryKeyRelatedField(queryset=Note.objects.all())
     class Meta:
         model = Note
         fields = ['note_id', 'owner', 'text']
@@ -74,7 +74,7 @@ class VolunteerSlotSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    text_slot = serializers.PrimaryKeyRelatedField()
+    text_slot = serializers.PrimaryKeyRelatedField(queryset=VolunteerSlot.objects.all())
     class Meta:
         model = VolunteerSlot
         fields = ['owner', 'text_slot', 'event', 'time']
@@ -86,7 +86,7 @@ class StatusBarSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
     default=serializers.CurrentUserDefault()
 )
-    unfinished = serializers.PrimaryKeyRelatedField()
+    unfinished = serializers.PrimaryKeyRelatedField(queryset=StatusBar.objects.all())
     class Meta:
         model = StatusBar
         fields = ['owner', 'unfinished', 'pending', 'approved', 'complete', 'required']
@@ -97,7 +97,7 @@ class TagSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
 )
-    text = serializers.PrimaryKeyRelatedField()
+    text = serializers.PrimaryKeyRelatedField(queryset=Tag.objects.all())
     class Meta:
         model = Tag
         fields = ['owner', 'text']

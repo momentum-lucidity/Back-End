@@ -27,8 +27,8 @@ class EventSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Event
-        fields = ['owner', 'title', 'date', 'start_time', 'end_time', 'type', 'description']
-        read_only_fields=['owner']
+        fields = ['id', 'owner', 'title', 'date', 'start_time', 'end_time', 'type', 'description']
+        read_only_fields=['id','owner']
 
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
     

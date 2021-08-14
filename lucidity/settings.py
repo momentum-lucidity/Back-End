@@ -125,9 +125,10 @@ AUTH_PASSWORD_VALIDATORS = [
 DJOSER = {
     'SERIALIZERS': {
         'user': 'core.serializers.UserSerializer',
-        'user_create': 'core.serializers.UserSerializer',
+        'user_create': 'core.serializers.CreateUserSerializer',
         'current_user': 'core.serializers.UserSerializer',
         'user_registration': 'core.serializers.UserSerializer',
+        'user_delete': 'core.serializers.UserSerializer',
         },
 }
 

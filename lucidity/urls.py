@@ -2,13 +2,14 @@ from django.contrib import admin
 from django.urls import include, path
 from core import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include ('rest_framework.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('users/', views.UserList.as_view()),
-    path('users/<int:pk>/', views.UserList.as_view()),
+    path('users/<int:pk>/', views.UserDetail.as_view()),
     path('events/', views.EventList.as_view()),
     path('events/<int:pk>/', views.EventDetail.as_view()),
     path('notes/', views.NoteList.as_view()),
@@ -24,3 +25,4 @@ urlpatterns = [
     path('tags/', views.TagList.as_view()),
     path('tags/<int:pk>/', views.TagDetail.as_view()),
 ]
+

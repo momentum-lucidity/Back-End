@@ -27,7 +27,7 @@ DEBUG = True
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
-        "rest_framework.authentication.SessionAuthentication"
+        'rest_framework.authentication.SessionAuthentication',
     ),
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny"
@@ -91,6 +91,7 @@ TEMPLATES = [
 
 AUTH_USER_MODEL = "core.User"
 
+
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'content-disposition',
 ]
@@ -122,6 +123,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user': 'core.serializers.UserSerializer',
+        'user_create': 'core.serializers.CreateUserSerializer',
+        'current_user': 'core.serializers.UserSerializer',
+        'user_registration': 'core.serializers.UserSerializer',
+        'user_delete': 'core.serializers.UserSerializer',
+        },
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

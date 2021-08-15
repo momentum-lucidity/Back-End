@@ -33,61 +33,42 @@ class UrlSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url']
 
 class DocumentSerializer(serializers.ModelSerializer):
-    owner = serializers.HiddenField(
-    default=serializers.CurrentUserDefault()
-)
     class Meta:
         model = Document
-        fields = ['owner', 'doc_header', 'id', 'summary', 'body', 'url', 'required']
-        read_only_fields=['owner', 'id']
+        fields = ['doc_header', 'id', 'summary', 'body', 'url', 'required']
+        read_only_fields=['id']
 
 
 class AlertSerializer(serializers.ModelSerializer):
-    owner = serializers.HiddenField(
-    default=serializers.CurrentUserDefault()
-)
     class Meta:
         model = Alert
-        fields = ['owner', 'id', 'alert_header', 'date','text']
-        read_only_fields=['owner', 'id']
+        fields = ['id', 'alert_header', 'date','text']
+        read_only_fields=['id']
 
 
 class NoteSerializer(serializers.ModelSerializer):
-    owner = serializers.HiddenField(
-    default=serializers.CurrentUserDefault()
-)
     class Meta:
         model = Note
-        fields = ['note_id', 'owner', 'text']
-        read_only_fields=['note_id', 'owner']
+        fields = ['note_id', 'text']
+        read_only_fields=['note_id']
 
 
 class VolunteerSlotSerializer(serializers.ModelSerializer):
-    owner = serializers.HiddenField(
-    default=serializers.CurrentUserDefault()
-)
     class Meta:
         model = VolunteerSlot
-        fields = ['owner', 'vsslot_text', 'id', 'event', 'time']
-        read_only_fields=['owner', 'id']
+        fields = ['vsslot_text', 'id', 'event', 'time']
+        read_only_fields=['id']
 
 
 class StatusBarSerializer(serializers.ModelSerializer):
-    required = serializers.ReadOnlyField(source='Document.required')
-    owner = serializers.HiddenField(
-    default=serializers.CurrentUserDefault()
-)
     class Meta:
         model = StatusBar
-        fields = ['owner', 'id', 'incomplete', 'pending', 'approved', 'complete', 'required']
-        read_only_fields=['owner', 'id', 'required']
+        fields = ['id', 'incomplete', 'pending', 'approved', 'complete', 'required']
+        read_only_fields=['id', 'required']
 
 
 class TagSerializer(serializers.ModelSerializer):
-    owner = serializers.HiddenField(
-        default=serializers.CurrentUserDefault()
-)
     class Meta:
         model = Tag
-        fields = ['owner', 'id', 'tag_text']
-        read_only_fields=['owner', 'id']
+        fields = ['id', 'tag_text']
+        read_only_fields=['id']

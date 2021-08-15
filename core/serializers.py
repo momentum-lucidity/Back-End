@@ -21,13 +21,10 @@ class CreateUserSerializer(UserCreateSerializer):
         'intake_status','preferred_event']
 
 class EventSerializer(serializers.ModelSerializer):
-    owner = serializers.HiddenField(
-    default=serializers.CurrentUserDefault()
-)
     class Meta:
         model = Event
-        fields = ['owner', 'id', 'event_header', 'date', 'start_time', 'end_time', 'type', 'description']
-        read_only_fields=['owner', 'id']
+        fields = ['id', 'event_header', 'date', 'start_time', 'end_time', 'type', 'description']
+        read_only_fields=['id']
 
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
     

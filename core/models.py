@@ -19,7 +19,7 @@ class User(AbstractUser):
     preferred_event = models.TextField(max_length=500, default="preferred events", blank=True, null=True)
 
 class Event(models.Model):
-    id = models.CharField(max_length=250, primary_key=True, editable=False)
+    id = models.CharField(max_length=250, primary_key=True)
     event_header = models.CharField(max_length=250)
     date = models.DateField()
     start_time = models.TimeField()

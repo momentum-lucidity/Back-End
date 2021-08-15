@@ -24,7 +24,6 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ['id', 'event_header', 'date', 'start_time', 'end_time', 'type', 'description']
-        read_only_fields=['id']
 
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
     
@@ -36,39 +35,34 @@ class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
         fields = ['doc_header', 'id', 'summary', 'body', 'url', 'required']
-        read_only_fields=['id']
 
 
 class AlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alert
         fields = ['id', 'alert_header', 'date','text']
-        read_only_fields=['id']
 
 
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
         fields = ['note_id', 'text']
-        read_only_fields=['note_id']
 
 
 class VolunteerSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = VolunteerSlot
         fields = ['vsslot_text', 'id', 'event', 'time']
-        read_only_fields=['id']
 
 
 class StatusBarSerializer(serializers.ModelSerializer):
     class Meta:
         model = StatusBar
         fields = ['id', 'incomplete', 'pending', 'approved', 'complete', 'required']
-        read_only_fields=['id', 'required']
+        read_only_fields=['required']
 
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ['id', 'tag_text']
-        read_only_fields=['id']

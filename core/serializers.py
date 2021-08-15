@@ -23,8 +23,8 @@ class CreateUserSerializer(UserCreateSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['id', 'event_header', 'date', 'start_time', 'end_time', 'type', 'description']
-
+        fields = ['eventpk', 'event_header', 'date', 'start_time', 'end_time', 'type', 'description']
+        read_only_field=['eventpk']
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
@@ -34,35 +34,36 @@ class UrlSerializer(serializers.HyperlinkedModelSerializer):
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
-        fields = ['doc_header', 'id', 'summary', 'body', 'url', 'required']
-
+        fields = ['doc_header', 'docpk', 'summary', 'body', 'url', 'required']
+        read_only_field=['docpk']
 
 class AlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alert
-        fields = ['id', 'alert_header', 'date','text']
-
+        fields = ['alertpk', 'alert_header', 'date','text']
+        read_only_field=['alertpk']
 
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
-        fields = ['note_id', 'text']
-
+        fields = ['notepk', 'text']
+        read_only_field=['notepk']
 
 class VolunteerSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = VolunteerSlot
-        fields = ['vsslot_text', 'id', 'event', 'time']
-
+        fields = ['vsslot_text', 'slotpk', 'event', 'time']
+        read_only_field=['slotpk']
 
 class StatusBarSerializer(serializers.ModelSerializer):
     class Meta:
         model = StatusBar
-        fields = ['id', 'incomplete', 'pending', 'approved', 'complete', 'required']
-        read_only_fields=['required']
+        fields = ['statuspk', 'incomplete', 'pending', 'approved', 'complete', 'required']
+        read_only_fields=['required', 'statuspk']
 
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ['id', 'tag_text']
+        fields = ['tagpk', 'tag_text', 'event']
+        read_only_field=['tagpk', 'event']

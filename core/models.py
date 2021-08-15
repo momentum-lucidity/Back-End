@@ -19,7 +19,7 @@ class User(AbstractUser):
     preferred_event = models.TextField(max_length=500, default="preferred events", blank=True, null=True)
 
 class Event(models.Model):
-    id = models.BigAutoField(primary_key=True, default="")
+    e_id = models.BigAutoField(primary_key=True)
     event_header = models.CharField(max_length=250)
     date = models.DateField()
     start_time = models.TimeField()
@@ -28,7 +28,7 @@ class Event(models.Model):
     description = models.TextField()
 
 class Document(models.Model):
-    id = models.BigAutoField(primary_key=True, default="")
+    d_id = models.BigAutoField(primary_key=True)
     doc_header = models.CharField(max_length=250)
     summary = models.TextField(null=True, blank=True)
     body = models.TextField(null=True, blank=True)
@@ -36,29 +36,29 @@ class Document(models.Model):
     required = models.BooleanField(null=True, blank=True, default=None)
 
 class Alert(models.Model):
-    id = models.BigAutoField(primary_key=True, default="")
+    a_id = models.BigAutoField(primary_key=True)
     alert_header = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
 
 class Note(models.Model):
-    id = models.BigAutoField(primary_key=True, default="don't render this field, it's just for the id number")
+    n_id = models.BigAutoField(primary_key=True)
     text = models.TextField(null=True, blank=True)
 
 class VolunteerSlot(models.Model):
-    id = models.BigAutoField(primary_key=True, default="")
+    v_id = models.BigAutoField(primary_key=True)
     vslot_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_slots")
     time = models.DateTimeField(null=True, blank=True)
 
 class StatusBar(models.Model):
-    id = models.BigAutoField(primary_key=True, default="")
+    s_id = models.BigAutoField(primary_key=True)
     incomplete = BooleanField(default=False)
     pending = BooleanField(default=False)
     approved = BooleanField(default=False)
     complete = BooleanField(default=False)
 
 class Tag(models.Model):
-    id = models.BigAutoField(primary_key=True, default="")
+    t_id = models.BigAutoField(primary_key=True)
     tag_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_tagged")  

@@ -19,7 +19,7 @@ class User(AbstractUser):
     preferred_event = models.TextField(max_length=500, default="preferred events", blank=True, null=True)
 
 class Event(models.Model):
-    title = models.CharField(max_length=250, primary_key=True, editable=False)
+    id = models.CharField(max_length=250, primary_key=True, editable=False)
     event_header = models.CharField(max_length=250)
     date = models.DateField()
     start_time = models.TimeField()
@@ -28,7 +28,7 @@ class Event(models.Model):
     description = models.TextField()
 
 class Document(models.Model):
-    title = models.CharField(max_length=250, primary_key=True, editable=False)
+    id = models.CharField(max_length=250, primary_key=True, editable=False)
     doc_header = models.CharField(max_length=250)
     summary = models.TextField(null=True, blank=True)
     body = models.TextField(null=True, blank=True)
@@ -36,29 +36,29 @@ class Document(models.Model):
     required = models.BooleanField(null=True, blank=True, default=None)
 
 class Alert(models.Model):
-    title = models.CharField(max_length=200, primary_key=True, editable=False)
+    id = models.CharField(max_length=200, primary_key=True, editable=False)
     alert_header = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
 
 class Note(models.Model):
-    note_id = models.CharField(max_length=200, null=False, blank=False, primary_key=True, default="don't render this field, it's just for the id number", editable=False)
+    id = models.CharField(max_length=200, null=False, blank=False, primary_key=True, default="don't render this field, it's just for the id number", editable=False)
     text = models.TextField(null=True, blank=True)
 
 class VolunteerSlot(models.Model):
-    text_slot = models.TextField(primary_key=True, editable=False)
+    id = models.TextField(primary_key=True, editable=False)
     vslot_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_slots")
     time = models.DateTimeField(null=True, blank=True)
 
 class StatusBar(models.Model):
-    unfinished = BooleanField(default=False, primary_key=True, editable=False)
+    id = BooleanField(default=False, primary_key=True, editable=False)
     incomplete = BooleanField(default=False)
     pending = BooleanField(default=False)
     approved = BooleanField(default=False)
     complete = BooleanField(default=False)
 
 class Tag(models.Model):
-    text = models.CharField(max_length=100, primary_key=True, editable=False)
+    id = models.CharField(max_length=100, primary_key=True, editable=False)
     tag_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_tagged")  

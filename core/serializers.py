@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 from .models import User, Event, Document, Alert, Note, VolunteerSlot, StatusBar, Tag
 from djoser.serializers import UserCreateSerializer
@@ -27,8 +26,8 @@ class EventSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Event
-        fields = ['owner', 'title', 'event_header', 'date', 'start_time', 'end_time', 'type', 'description']
-        read_only_fields=['owner', 'title']
+        fields = ['owner', 'id', 'event_header', 'date', 'start_time', 'end_time', 'type', 'description']
+        read_only_fields=['owner', 'id']
 
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
     
@@ -42,8 +41,8 @@ class DocumentSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Document
-        fields = ['owner', 'doc_header', 'title', 'summary', 'body', 'url', 'required']
-        read_only_fields=['owner', 'title']
+        fields = ['owner', 'doc_header', 'id', 'summary', 'body', 'url', 'required']
+        read_only_fields=['owner', 'id']
 
 
 class AlertSerializer(serializers.ModelSerializer):
@@ -52,8 +51,8 @@ class AlertSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Alert
-        fields = ['owner', 'title', 'alert_header', 'date','text']
-        read_only_fields=['owner', 'title']
+        fields = ['owner', 'id', 'alert_header', 'date','text']
+        read_only_fields=['owner', 'id']
 
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -72,8 +71,8 @@ class VolunteerSlotSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = VolunteerSlot
-        fields = ['owner', 'vsslot_text', 'text_slot', 'event', 'time']
-        read_only_fields=['owner', 'text_slot']
+        fields = ['owner', 'vsslot_text', 'id', 'event', 'time']
+        read_only_fields=['owner', 'id']
 
 
 class StatusBarSerializer(serializers.ModelSerializer):
@@ -83,8 +82,8 @@ class StatusBarSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = StatusBar
-        fields = ['owner', 'unfinished', 'incomplete', 'pending', 'approved', 'complete', 'required']
-        read_only_fields=['owner', 'unfinished', 'required']
+        fields = ['owner', 'id', 'incomplete', 'pending', 'approved', 'complete', 'required']
+        read_only_fields=['owner', 'id', 'required']
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -93,5 +92,5 @@ class TagSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Tag
-        fields = ['owner', 'text', 'tag_text']
-        read_only_fields=['owner', 'text']
+        fields = ['owner', 'id', 'tag_text']
+        read_only_fields=['owner', 'id']

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.deletion import CASCADE, DO_NOTHING
 from django.db.models.fields import AutoField, BooleanField, DateTimeField, TimeField
+from django.db.models.fields.related import OneToOneField
 
 class User(AbstractUser):
     display_name = models.CharField(max_length=200, default="preferred name", blank=True, null=True)
@@ -19,6 +20,7 @@ class User(AbstractUser):
     preferred_event = models.TextField(max_length=500, default="preferred events", blank=True, null=True)
 
 class Event(models.Model):
+    user = models.ManyToManyField(User, related_name="event_user")
     eventpk = models.AutoField(primary_key=True, default=None)
     event_header = models.CharField(max_length=250)
     date = models.DateField()
@@ -28,6 +30,7 @@ class Event(models.Model):
     description = models.TextField()
 
 class Document(models.Model):
+    user = models.ManyToManyField(User, related_name="document_user")
     docpk = models.AutoField(primary_key=True, default=None)
     doc_header = models.CharField(max_length=250)
     summary = models.TextField(null=True, blank=True)
@@ -36,22 +39,26 @@ class Document(models.Model):
     required = models.BooleanField(null=True, blank=True, default=None)
 
 class Alert(models.Model):
+    user = models.OneToOneField(User, on_delete=DO_NOTHING, related_name="alert_creator")
     alertpk = models.AutoField(primary_key=True, default=None)
     alert_header = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
 
 class Note(models.Model):
+    user = models.ManyToManyField(User, related_name="note_creator")
     notepk = models.AutoField(primary_key=True, default=None)
     text = models.TextField(null=True, blank=True)
 
 class VolunteerSlot(models.Model):
+    user = models.ManyToManyField(User, related_name="event_volunteer")
     slotpk = models.AutoField(primary_key=True, default=None)
     vslot_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_slots")
     time = models.DateTimeField(null=True, blank=True)
 
 class StatusBar(models.Model):
+    user = models.OneToOneField(User, on_delete=CASCADE, related_name="volunteers_status")
     statuspk = models.AutoField(primary_key=True, default=None)
     incomplete = BooleanField(default=False)
     pending = BooleanField(default=False)
@@ -59,6 +66,7 @@ class StatusBar(models.Model):
     complete = BooleanField(default=False)
 
 class Tag(models.Model):
+    user = models.ManyToManyField(User, related_name="tag_user")
     tagpk = models.AutoField(primary_key=True, default=None)
     tag_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_tagged")  

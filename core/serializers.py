@@ -58,8 +58,8 @@ class VolunteerSlotSerializer(serializers.ModelSerializer):
 class StatusBarSerializer(serializers.ModelSerializer):
     class Meta:
         model = StatusBar
-        fields = ['user', 'statuspk', 'incomplete', 'pending', 'approved', 'complete', 'required']
-        read_only_fields=['user', 'required', 'statuspk']
+        fields = ['user', 'statuspk', 'incomplete', 'pending', 'approved', 'complete']
+        read_only_fields=['user', 'statuspk']
 
 
 class TagSerializer(serializers.ModelSerializer):

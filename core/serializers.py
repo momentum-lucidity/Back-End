@@ -23,8 +23,8 @@ class CreateUserSerializer(UserCreateSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['eventpk', 'event_header', 'date', 'start_time', 'end_time', 'type', 'description']
-        read_only_field=['eventpk']
+        fields = ['user', 'eventpk', 'event_header', 'date', 'start_time', 'end_time', 'type', 'description']
+        read_only_field=['user', 'eventpk']
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
@@ -34,36 +34,36 @@ class UrlSerializer(serializers.HyperlinkedModelSerializer):
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
-        fields = ['doc_header', 'docpk', 'summary', 'body', 'url', 'required']
-        read_only_field=['docpk']
+        fields = ['user', 'doc_header', 'docpk', 'summary', 'body', 'url', 'required']
+        read_only_field=['user','docpk']
 
 class AlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alert
-        fields = ['alertpk', 'alert_header', 'date','text']
-        read_only_field=['alertpk']
+        fields = ['user', 'alertpk', 'alert_header', 'date','text']
+        read_only_field=['user', 'alertpk']
 
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
-        fields = ['notepk', 'text']
-        read_only_field=['notepk']
+        fields = ['user', 'notepk', 'text']
+        read_only_field=['user', 'notepk']
 
 class VolunteerSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = VolunteerSlot
-        fields = ['vsslot_text', 'slotpk', 'event', 'time']
-        read_only_field=['slotpk']
+        fields = ['user', 'vsslot_text', 'slotpk', 'event', 'time']
+        read_only_field=['user', 'slotpk']
 
 class StatusBarSerializer(serializers.ModelSerializer):
     class Meta:
         model = StatusBar
-        fields = ['statuspk', 'incomplete', 'pending', 'approved', 'complete', 'required']
-        read_only_fields=['required', 'statuspk']
+        fields = ['user', 'statuspk', 'incomplete', 'pending', 'approved', 'complete', 'required']
+        read_only_fields=['user', 'required', 'statuspk']
 
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ['tagpk', 'tag_text', 'event']
-        read_only_field=['tagpk', 'event']
+        fields = ['user', 'tagpk', 'tag_text', 'event']
+        read_only_field=['user', 'tagpk', 'event']

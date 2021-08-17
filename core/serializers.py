@@ -2,10 +2,10 @@ from rest_framework import serializers
 from .models import User, Event, Document, Alert, Note, VolunteerSlot, StatusBar, Tag
 from djoser.serializers import UserCreateSerializer
 from django.contrib.auth import get_user_model
+from rest_framework import request
 
 User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
         fields = ['username', 'password', 'id', 'display_name','legal_name','pronouns', 'availability', 'email', 'telephone', 
@@ -14,6 +14,9 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_field=['id']
 
 class CreateUserSerializer(UserCreateSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
         class Meta(UserCreateSerializer.Meta):
             model = User
             fields = ['username', 'password', 'id', 'display_name','legal_name','pronouns', 'availability', 'email', 'telephone', 
@@ -53,14 +56,21 @@ class VolunteerSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = VolunteerSlot
         fields = ['user', 'vslot_text', 'slotpk', 'event', 'time']
-        read_only_field=['user', 'slotpk']
+        read_only_field=['user', 'slotpk', 'event']
 
 class StatusBarSerializer(serializers.ModelSerializer):
+    user = UserSerializer(required=False)
     class Meta:
         model = StatusBar
         fields = ['user', 'statuspk', 'incomplete', 'pending', 'approved', 'complete']
         read_only_fields=['user', 'statuspk']
 
+    def create(self, validated_data):
+        user_data = validated_data.pop('user')
+        user = UserSerializer.create(UserSerializer(), validated_data=user_data)
+        status, created = StatusBar.objects.update_or_create(user=user)
+        
+        return status
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:

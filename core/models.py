@@ -39,11 +39,12 @@ class Document(models.Model):
     required = models.BooleanField(null=True, blank=True, default=None)
 
 class Alert(models.Model):
-    user = models.OneToOneField(User, on_delete=DO_NOTHING, related_name="alert_creator")
+    user = models.ManyToManyField(User, related_name="alert_creator")
     alertpk = models.AutoField(primary_key=True, default=None)
     alert_header = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
+    event = models.ManyToManyField(Event, related_name="announcementevent")
 
 class Note(models.Model):
     user = models.ManyToManyField(User, related_name="note_creator")
@@ -58,8 +59,8 @@ class VolunteerSlot(models.Model):
     time = models.DateTimeField(null=True, blank=True)
 
 class StatusBar(models.Model):
-    user = models.OneToOneField(User, on_delete=CASCADE, related_name="volunteers_status")
-    statuspk = models.AutoField(primary_key=True, on_delete=DO_NOTHING, default=None)
+    user = models.OneToOneField(User, on_delete=DO_NOTHING, related_name="volunteers_status")
+    statuspk = models.AutoField(primary_key=True, default=None)
     incomplete = BooleanField(default=False)
     pending = BooleanField(default=False)
     approved = BooleanField(default=False)

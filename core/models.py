@@ -59,7 +59,7 @@ class VolunteerSlot(models.Model):
 
 class StatusBar(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE, related_name="volunteers_status")
-    statuspk = models.AutoField(primary_key=True, default=None)
+    statuspk = models.AutoField(primary_key=True, on_delete=DO_NOTHING, default=None)
     incomplete = BooleanField(default=False)
     pending = BooleanField(default=False)
     approved = BooleanField(default=False)

@@ -16,7 +16,6 @@ class UserList(generics.ListCreateAPIView):
     filter_backends = (SearchFilter, OrderingFilter)
     search_fields = ('display_name', 'email', 'availability')
 
-
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer

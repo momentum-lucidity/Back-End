@@ -1,8 +1,10 @@
+from django.shortcuts import render
 from rest_framework import serializers
 from .models import User, Event, Document, Alert, Note, VolunteerSlot, StatusBar, Tag
 from djoser.serializers import UserCreateSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import request
+
 
 User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):

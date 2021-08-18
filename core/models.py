@@ -44,7 +44,7 @@ class Alert(models.Model):
     alert_header = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
-    event = models.ManyToManyField(Event, related_name="announcementevent")
+    event = models.ManyToManyField(Event, related_name="announcementevent", blank=True, default=None)
 
 class Note(models.Model):
     user = models.ManyToManyField(User, related_name="note_creator")

@@ -49,6 +49,8 @@ class DocumentDetail(generics.RetrieveUpdateDestroyAPIView):
 class AlertList(generics.ListCreateAPIView):
     queryset = Alert.objects.all()
     serializer_class = AlertSerializer
+    filter_backends = (SearchFilter, OrderingFilter)
+    search_fields = ('date', 'event')
 
 class AlertDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Alert.objects.all()

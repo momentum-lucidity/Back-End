@@ -4,7 +4,6 @@ from .models import User, Event, Document, Alert, Note, VolunteerSlot, StatusBar
 from djoser.serializers import UserCreateSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import request
-from datetime import datetime, timedelta
 
 User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
@@ -24,17 +23,6 @@ class CreateUserSerializer(UserCreateSerializer):
             fields = ['username', 'password', 'id', 'display_name','legal_name','pronouns', 'availability', 'email', 'telephone', 
         'address2', 'city','state','zipcode', 'user_status',
         'intake_status','preferred_event']
-
-class TimeSerializer(serializers.Serializer):
-
-    def datetime_range(start, end, delta):
-        current = start
-        while current < end:
-            yield current
-            current += delta
-
-    dts = [timedelta(minutes=15)]
-    render(dts)
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:

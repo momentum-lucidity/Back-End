@@ -52,7 +52,7 @@ class Note(models.Model):
     text = models.TextField(null=True, blank=True)
 
 class VolunteerSlot(models.Model):
-    user = models.ManyToManyField(User, related_name="event_volunteer")
+    user = models.ManyToManyField(User, related_name="event_volunteer", blank=True, default=None)
     slotpk = models.AutoField(primary_key=True, default=None)
     vslot_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_slots")

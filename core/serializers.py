@@ -43,8 +43,8 @@ class DocumentSerializer(serializers.ModelSerializer):
 class AlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alert
-        fields = ['user', 'alertpk', 'alert_header', 'date','text']
-        read_only_field=['user', 'alertpk']
+        fields = ['user', 'alertpk', 'alert_header', 'date','text', 'event']
+        read_only_field=['user', 'alertpk', 'event']
 
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:

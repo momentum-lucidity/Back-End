@@ -56,8 +56,8 @@ class NoteSerializer(serializers.ModelSerializer):
 class VolunteerSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = VolunteerSlot
-        fields = ['user', 'vslot_text', 'slotpk', 'event', 'time']
-        read_only_field=['user', 'slotpk']
+        fields = ['user', 'vslot_text', 'slotpk', 'event', 'time', 'date']
+        read_only_field=['user', 'slotpk', 'date']
 
 class StatusBarSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=False)

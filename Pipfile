@@ -17,6 +17,7 @@ djoser = "*"
 djangorestframework-simplejwt = "*"
 django-cors-headers = "*"
 django-filter = "*"
+django-phone-field = "*"
 
 [requires]
 python_version = "3.9"

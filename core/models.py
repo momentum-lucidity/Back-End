@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db.models.deletion import CASCADE, DO_NOTHING
 from django.db.models.fields import AutoField, BooleanField, DateTimeField, TimeField
 from django.db.models.fields.related import OneToOneField
+from phone_field import PhoneField
+
 
 class User(AbstractUser):
     display_name = models.CharField(max_length=200, default="preferred name", blank=True, null=True)
@@ -10,7 +12,7 @@ class User(AbstractUser):
     pronouns = models.CharField(max_length=200, default="pronouns", blank=True, null=True)
     availability = models.TextField(max_length=500, default='availability', blank=True, null=True)
     email = models.EmailField(max_length=200, null=True, blank=True, default="e-mail address")
-    telephone = models.CharField(max_length=250, default="10-digit phone number", blank=True, null=True)
+    telephone = PhoneField(blank=True, help_text='Contact phone number')
     address2 = models.CharField(max_length=50, default="Address 2", blank=True, null=True)
     city = models.CharField(max_length=50, default="City", blank=True, null=True)
     state = models.CharField(max_length=50, default="State", blank=True, null=True)
@@ -56,7 +58,8 @@ class VolunteerSlot(models.Model):
     slotpk = models.AutoField(primary_key=True, default=None)
     vslot_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_slots")
-    time = models.DateTimeField(null=True, blank=True)
+    time = models.DurationField(null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
 
 class StatusBar(models.Model):
     user = models.OneToOneField(User, on_delete=DO_NOTHING, related_name="volunteers_status")
@@ -70,4 +73,4 @@ class Tag(models.Model):
     user = models.ManyToManyField(User, related_name="tag_user")
     tagpk = models.AutoField(primary_key=True, default=None)
     tag_text = models.CharField(max_length=250)
-    event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_tagged")  
+    event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_tagged")

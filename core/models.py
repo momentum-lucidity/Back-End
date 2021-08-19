@@ -58,7 +58,7 @@ class VolunteerSlot(models.Model):
     slotpk = models.AutoField(primary_key=True, default=None)
     vslot_text = models.CharField(max_length=250)
     event = models.ForeignKey(Event, on_delete=DO_NOTHING, related_name="event_slots")
-    time = models.DurationField(null=True, blank=True)
+    timespan = models.DurationField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
 
 class StatusBar(models.Model):

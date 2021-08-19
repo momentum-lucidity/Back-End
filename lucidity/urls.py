@@ -15,7 +15,7 @@ urlpatterns = [
     path('notes/', views.NoteList.as_view()),
     path('notes/<int:pk>/', views.NoteDetail.as_view()),
     path('docs/', views.DocumentList.as_view()),
-    path('docs/<int:pk>/', views.DocumentList.as_view()),
+    path('docs/<int:pk>/', views.DocumentDetail.as_view()),
     path('announcements/', views.AlertList.as_view()),
     path('announcements/<int:pk>/', views.AlertDetail.as_view()),
     path('volunteerops/', views.VolunteerSlotList.as_view()),

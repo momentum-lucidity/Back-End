@@ -14,6 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
         'intake_status','preferred_event']
         read_only_field=['id']
 
+
 class CreateUserSerializer(UserCreateSerializer):
     class Meta:
         model = User
@@ -54,24 +55,22 @@ class NoteSerializer(serializers.ModelSerializer):
         read_only_field=['user', 'notepk']
 
 class VolunteerSlotSerializer(serializers.ModelSerializer):
+    user = User
     class Meta:
         model = VolunteerSlot
         fields = ['user', 'vslot_text', 'slotpk', 'event', 'starttime', 'endtime', 'date']
         read_only_field=['user', 'slotpk']
 
 class StatusBarSerializer(serializers.ModelSerializer):
-    user = UserSerializer(required=False)
     class Meta:
         model = StatusBar
         fields = ['user', 'statuspk', 'incomplete', 'pending', 'approved', 'complete']
-        read_only_fields=['user', 'statuspk']
-
-    def create(self, validated_data):
-        user_data = validated_data.pop('user')
-        user = UserSerializer.create(UserSerializer(), validated_data=user_data)
-        status, created = StatusBar.objects.update_or_create(user=user)
+        read_only_fields=['statuspk']
         
-        return status
+    def status(self, User):
+        StatusBar.user(source='User')
+        render(self.user)
+
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:

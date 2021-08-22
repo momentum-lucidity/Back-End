@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .serializers import AlertSerializer, DocumentSerializer, EventSerializer, NoteSerializer, StatusBarSerializer, TagSerializer, UserSerializer, VolunteerSlotSerializer
-from django.core.mail import send_mail
+
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()

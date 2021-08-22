@@ -6,14 +6,14 @@ from django.contrib.auth import get_user_model
 from rest_framework import request
 
 User = get_user_model()
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'password', 'id', 'display_name','legal_name','pronouns', 'availability', 'email', 'telephone', 
         'address2', 'city','state','zipcode', 'user_status',
         'intake_status','preferred_event']
-        read_only_field=['id']
-
+        read_only_field=['id', 'intake_status']
 
 class CreateUserSerializer(UserCreateSerializer):
     class Meta:
@@ -61,15 +61,13 @@ class VolunteerSlotSerializer(serializers.ModelSerializer):
         fields = ['user', 'vslot_text', 'slotpk', 'event', 'starttime', 'endtime', 'date']
         read_only_field=['user', 'slotpk']
 
+
 class StatusBarSerializer(serializers.ModelSerializer):
+    user = User
     class Meta:
         model = StatusBar
         fields = ['user', 'statuspk', 'incomplete', 'pending', 'approved', 'complete']
         read_only_fields=['statuspk']
-        
-    def status(self, User):
-        StatusBar.user(source='User')
-        render(self.user)
 
 
 class TagSerializer(serializers.ModelSerializer):

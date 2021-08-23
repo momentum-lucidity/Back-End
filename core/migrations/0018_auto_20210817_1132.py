@@ -4,13 +4,11 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 
-
 class Migration(migrations.Migration):
-
     dependencies = [
         ('core', '0017_auto_20210816_1008'),
     ]
-
+    
     operations = [
         migrations.AddField(
             model_name='alert',

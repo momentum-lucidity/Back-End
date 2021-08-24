@@ -24,5 +24,6 @@ urlpatterns = [
     path('status/<int:pk>/', views.StatusDetail.as_view()),
     path('tags/', views.TagList.as_view()),
     path('tags/<int:pk>/', views.TagDetail.as_view()),
+    path('email/', views.EmailInvite.as_view()),
 ]
 

@@ -75,3 +75,9 @@ class TagSerializer(serializers.ModelSerializer):
         model = Tag
         fields = ['user', 'tagpk', 'tag_text', 'event']
         read_only_field=['user', 'tagpk', 'event']
+
+class EmailSerializer(serializers.Serializer):
+    email = User.email
+    class Meta:
+        model = User
+        fields = ['email']
